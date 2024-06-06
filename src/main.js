@@ -34,18 +34,14 @@ import Chartist from "chartist";
 
 import 'vue2-toast/lib/toast.css';
 import Toast from 'vue2-toast';
-
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
   linkExactActiveClass: "nav-item active",
 });
 
-
-
 Vue.prototype.$Chartist = Chartist;
 
-Vue.use(Toast);
 Vue.use(VueRouter);
 Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);

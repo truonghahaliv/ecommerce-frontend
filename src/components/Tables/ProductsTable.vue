@@ -1,6 +1,6 @@
 <template>
 <div>
-    <md-table v-model="products" :table-header-color="tableHeaderColor">
+    <md-table v-model="products.data" :table-header-color="tableHeaderColor">
         <md-table-row slot="md-table-row" slot-scope="{ item }">
             <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
             <md-table-cell md-label="Name">{{ item.name }}</md-table-cell>
@@ -21,12 +21,13 @@
             </md-table-cell>
         </md-table-row>
     </md-table>
+    <pagination v-model="products.current_page" :total="products.total" :per-page="products.per_page" :records="products.total" @paginate="myCallback" class="pagination"></pagination>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
-
+import Pagination from 'vue-pagination-2';
 export default {
     name: "products-table",
     props: {
@@ -35,9 +36,18 @@ export default {
             default: "",
         },
     },
+    components: {
+        Pagination
+    },
     data() {
         return {
-            products: []
+            products: {
+                data: [],
+                current_page: 1,
+                per_page: 10,
+                total: 0
+            },
+
         };
     },
     mounted() {
@@ -45,17 +55,20 @@ export default {
         this.fetchProducts();
     },
     methods: {
-        fetchProducts() {
-            axios.get('http://127.0.0.1:8000/api/products')
+        fetchProducts(page =1) {
+            axios.get(`http://127.0.0.1:8000/api/products?page=${page}`)
+
                 .then(response => {
                     this.products = response.data;
-
+                    this.products.current_page = response.data.current_page;
+                    this.products.per_page = response.data.per_page;
+                    this.products.total = response.data.total;
                 })
                 .catch(error => {
                     console.error('Error fetching products:', error);
                 });
         },
-        editUser(productId) {
+        editProduct(productId) {
             this.$router.push({
                 name: 'EditProduct',
                 params: {
@@ -75,6 +88,10 @@ export default {
                     });
             }
         },
+        myCallback(newPage) {
+
+            this.fetchProducts(newPage);
+        }
     }
 
 };
