@@ -1,5 +1,6 @@
 <template>
 <div>
+   
     <md-table v-model="products.data" :table-header-color="tableHeaderColor">
         <md-table-row slot="md-table-row" slot-scope="{ item }">
             <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
@@ -28,6 +29,7 @@
 <script>
 import axios from 'axios';
 import Pagination from 'vue-pagination-2';
+
 export default {
     name: "products-table",
     props: {
@@ -37,7 +39,8 @@ export default {
         },
     },
     components: {
-        Pagination
+        Pagination,
+        
     },
     data() {
         return {

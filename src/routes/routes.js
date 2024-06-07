@@ -13,7 +13,28 @@ import EditProduct from "../pages/admin/products/EditProduct.vue";
 import Categories from "../pages/admin/categories/View.vue";
 import AddCategory from "../pages/admin/categories/AddCategory.vue";
 import EditCategory from "../pages/admin/categories/EditCategory.vue";
+import Login from "../pages/auth/Login.vue";
+
+
+import Register from "../pages/auth/Register.vue";
 const routes = [
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    meta: {
+      requiresGuest: true,
+    },
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
+    meta: {
+      requiresGuest: true,
+    },
+  },
+ 
   {
     path: "/",
     component: DashboardLayout,
@@ -88,14 +109,6 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: '/login',
-  //   name: 'login',
-  //   component: Login,
-  //   meta: {
-  //     requiresGuest: true
-  //   }
-  // },
 ];
 
 export default routes;
