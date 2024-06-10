@@ -1,7 +1,7 @@
 <template>
     <md-card>
         <md-card-header>
-            <h4 class="title">Edit Category</h4>
+            <h4 class="title">Edit Permission</h4>
         </md-card-header>
     
         <md-card-content>
@@ -9,18 +9,13 @@
                 <div class="md-layout-item md-small-size-100 md-size-50">
                     <md-field>
                         <label> Name</label>
-                        <md-input v-model="category.name" type="text"></md-input>
+                        <md-input v-model="permission.name" type="text"></md-input>
                     </md-field>
                 </div>
-                <div class="md-layout-item md-small-size-100 md-size-50">
-                    <md-field>
-                        <label>Description</label>
-                        <md-input v-model="category.description" type="text"></md-input>
-                    </md-field>
-                </div>
+                
     
                 <div class="md-layout-item md-size-100 text-right">
-                    <md-button @click="updateCategory" class="md-raised md-success">Update Category</md-button>
+                    <md-button @click="updatePermission" class="md-raised md-success">Update Permission</md-button>
                 </div>
                 <div v-if="errorList" class="md-layout-item md-size-100">
                     <p class="error">{{ errorList }}</p>
@@ -34,47 +29,45 @@
     import axios from 'axios';
     
     export default {
-        name: 'EditCategory',
+        name: 'EditPermission',
         data() {
             return {
                 id: '',
                 errorList: '',
-                category: {
+                permission: {
                     name: '',
-                    description: '',
 
                 },
     
             };
         },
         mounted() {
-            //console.log(this.$router.params.id)
             this.id = this.$route.params.id;
-            this.fetchCategory()
+            this.fetchPermission()
         },
     
         methods: {
     
-            fetchCategory() {
-                axios.get(`http://127.0.0.1:8000/api/categories/${this.id}`)
+            fetchPermission() {
+                axios.get(`http://127.0.0.1:8000/api/permissions/${this.id}`)
                     .then(response => {
-                        this.category = response.data;
+                        this.permission = response.data;
                     })
                     .catch(error => {
-                        console.error('Error fetching category:', error);
+                        console.error('Error fetching permission:', error);
                     });
             },
-            updateCategory() {
-                axios.put(`http://127.0.0.1:8000/api/categories/${this.id}`, this.category)
+            updatePermission() {
+                axios.put(`http://127.0.0.1:8000/api/permissions/${this.id}`, this.permission)
                     .then(response => {
                         console.log(response.data)
-                        alert('Category updated successfully');
+                        alert('Permission updated successfully');
                         this.$router.push({
-                            name: 'Categories'
+                            name: 'Permissions'
                         });
                     })
                     .catch(error => {
-                        console.error('Error updating category:', error);
+                        console.error('Error updating permission:', error);
                     });
             }
         }

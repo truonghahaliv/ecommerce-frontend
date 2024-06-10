@@ -29,12 +29,11 @@
                                     </md-button>
                                     <ul class="dropdown-menu dropdown-menu-right">
 
+                                       
                                         <li>
-                                            <router-link to="userProfile">Profile</router-link>
+                                            <router-link to="logout" @click.native="logout">Logout</router-link>
                                         </li>
-                                        <li>
-                                            <router-link to="" @click.native="logout">Logout</router-link>
-                                        </li>
+                                       
                                     </ul>
                                 </drop-down>
                             </div>

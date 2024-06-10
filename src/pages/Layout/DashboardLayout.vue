@@ -22,7 +22,14 @@
             <p>Category</p>
         </sidebar-link>
 
-       
+        <sidebar-link to="/permissions">
+            <md-icon></md-icon>
+            <p>Permission</p>
+        </sidebar-link>
+        <sidebar-link to="/roles">
+            <md-icon></md-icon>
+            <p>Roles</p>
+        </sidebar-link>
        
         <sidebar-link to="/typography">
             <md-icon>library_books</md-icon>

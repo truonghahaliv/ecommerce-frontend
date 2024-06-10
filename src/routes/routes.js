@@ -1,5 +1,4 @@
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
-
 import Dashboard from "@/pages/Dashboard.vue";
 import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
@@ -14,27 +13,25 @@ import Categories from "../pages/admin/categories/View.vue";
 import AddCategory from "../pages/admin/categories/AddCategory.vue";
 import EditCategory from "../pages/admin/categories/EditCategory.vue";
 import Login from "../pages/auth/Login.vue";
-
-
 import Register from "../pages/auth/Register.vue";
+import Permissions from "../pages/admin/permissions/View.vue";
+import AddPermission from "../pages/admin/permissions/AddPermission.vue";
+import EditPermission from "../pages/admin/permissions/EditPermission.vue";
+import Roles from "../pages/admin/roles/View.vue";
+import AddRole from "../pages/admin/roles/AddRole.vue";
+import EditRole from "../pages/admin/roles/EditRole.vue";
+
 const routes = [
   {
     path: "/login",
     name: "Login",
     component: Login,
-    meta: {
-      requiresGuest: true,
-    },
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
-    meta: {
-      requiresGuest: true,
-    },
   },
- 
   {
     path: "/",
     component: DashboardLayout,
@@ -45,7 +42,6 @@ const routes = [
         name: "Dashboard",
         component: Dashboard,
       },
-
       {
         path: "typography",
         name: "Typography",
@@ -56,7 +52,6 @@ const routes = [
         name: "Icons",
         component: Icons,
       },
-
       {
         path: "notifications",
         name: "Notifications",
@@ -64,48 +59,108 @@ const routes = [
       },
       {
         path: "users",
-        name: "Users",
         component: Users,
-      },
-      {
-        path: "/users/add-user",
-        name: "AddUser",
-        component: AddUser,
-      },
-      {
-        path: "/users/:id/edit-user",
-        name: "EditUser",
-        component: EditUser,
+        children: [
+          {
+            path: "",
+            name: "Users",
+            component: Users,
+          },
+          {
+            path: "add-user",
+            name: "AddUser",
+            component: AddUser,
+          },
+          {
+            path: ":id/edit-user",
+            name: "EditUser",
+            component: EditUser,
+          },
+        ],
       },
       {
         path: "products",
-        name: "Products",
         component: Products,
-      },
-      {
-        path: "/products/add-product",
-        name: "AddProduct",
-        component: AddProduct,
-      },
-      {
-        path: "/products/:id/edit-product",
-        name: "EditProduct",
-        component: EditProduct,
+        children: [
+          {
+            path: "",
+            name: "Products",
+            component: Products,
+          },
+          {
+            path: "add-product",
+            name: "AddProduct",
+            component: AddProduct,
+          },
+          {
+            path: ":id/edit-product",
+            name: "EditProduct",
+            component: EditProduct,
+          },
+        ],
       },
       {
         path: "categories",
-        name: "Categories",
         component: Categories,
+        children: [
+          {
+            path: "",
+            name: "Categories",
+            component: Categories,
+          },
+          {
+            path: "add-category",
+            name: "AddCategory",
+            component: AddCategory,
+          },
+          {
+            path: ":id/edit-category",
+            name: "EditCategory",
+            component: EditCategory,
+          },
+        ],
       },
       {
-        path: "/categories/add-category",
-        name: "AddCategory",
-        component: AddCategory,
+        path: "permissions",
+        component: Permissions,
+        children: [
+          {
+            path: "",
+            name: "Permissions",
+            component: Permissions,
+          },
+          {
+            path: "add-permission",
+            name: "AddPermission",
+            component: AddPermission,
+          },
+          {
+            path: ":id/edit-permission",
+            name: "EditPermission",
+            component: EditPermission,
+          },
+        ],
       },
       {
-        path: "/categories/:id/edit-category",
-        name: "EditCategory",
-        component: EditCategory,
+        path: "roles",
+        component: Roles,
+        children: [
+          {
+            path: "",
+            name: "Roles",
+            component: Roles,
+          },
+          {
+            path: "add-role",
+            name: "AddRole",
+            component: AddRole,
+          },
+          {
+            path: ":id/edit-role",
+            name: "EditRole",
+            component: EditRole,
+          },
+        ],
       },
     ],
   },
