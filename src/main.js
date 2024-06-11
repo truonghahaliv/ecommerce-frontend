@@ -1,60 +1,51 @@
-// =========================================================
-// * Vue Material Dashboard - v1.5.2
-// =========================================================
-//
-// * Product Page: https://www.creative-tim.com/product/vue-material-dashboard
-// * Copyright 2024 Creative Tim (https://www.creative-tim.com)
-// * Licensed under MIT (https://github.com/creativetimofficial/vue-material-dashboard/blob/master/LICENSE.md)
-//
-// * Coded by Creative Tim
-//
-// =========================================================
-//
-// * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from "vue";
-import VueRouter from "vue-router";
-import App from "./App";
-
-// router setup
-import routes from "./routes/routes";
-
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from './App.vue'; // Ensure this path is correct
+import routes from './routes/routes'; // Ensure this path is correct
+import store from './store/store';
 // Plugins
-import GlobalComponents from "./globalComponents";
-import GlobalDirectives from "./globalDirectives";
-import Notifications from "./components/NotificationPlugin";
-
-// MaterialDashboard plugin
-import MaterialDashboard from "./material-dashboard";
-
-import Chartist from "chartist";
-
+import GlobalComponents from './globalComponents';
+import GlobalDirectives from './globalDirectives';
+import Notifications from './components/NotificationPlugin';
+import MaterialDashboard from './material-dashboard';
+import Chartist from 'chartist';
 
 import 'vue2-toast/lib/toast.css';
-import Toast from 'vue2-toast';
-// configure router
+
+// Use Vue Router
+Vue.use(VueRouter);
+
+// Create the router instance
 const router = new VueRouter({
-  routes, // short for routes: routes
-  linkExactActiveClass: "nav-item active",
+  routes,
+  linkExactActiveClass: 'nav-item active',
 });
 
+// function isLoggedIn() {
+//   return localStorage.getItem('auth') === 'true';
+// }
+// Navigation guard to check authentication
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+    next({ path: '/login', query: { redirect: to.fullPath } });
+  } else if (to.meta.requiresGuest && store.getters.isAuthenticated) {
+    next('/dashboard');
+  } else {
+    next();
+  }
+});
 Vue.prototype.$Chartist = Chartist;
 
-Vue.use(VueRouter);
 Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
 
-/* eslint-disable no-new */
 new Vue({
-  el: "#app",
+  el: '#app',
   render: (h) => h(App),
   router,
   data: {
     Chartist: Chartist,
   },
 });
-

@@ -23,7 +23,7 @@
     "vue-multiselect": "^3.0.0",
     "vue-pagination-2": "^3.1.0",
     "vue-plain-pagination": "^0.3.0",
-    "vue-router": "3.6.5",
+    "vue-router": "^3.6.5",
     "vue-social-sharing": "3.0.9",
     "vue2-toast": "^2.1.0"
   },
