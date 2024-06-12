@@ -49,7 +49,8 @@ export default {
 
             axios.post('http://localhost:8000/api/login', this.loginData)
                 .then(response => {
-                    console.log(this.loginData)
+                    const token = response.data.token;
+                    localStorage.setItem('authToken', token);
                     console.log('Success:', response.data);
                     this.$router.push({
                         name: 'Dashboard'
@@ -59,10 +60,12 @@ export default {
                     if (error.response && error.response.data) {
                         this.errorList = error.response.data.message; 
                     } else {
-                        this.errorList = 'An error occurred. Please try again later.';
+                        this.errorList = 'Login failed';
                     }
                 });
+                
         },
+        
     },
 };
 </script>
