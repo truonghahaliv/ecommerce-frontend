@@ -17,7 +17,7 @@ import EditPermission from "../pages/admin/permissions/EditPermission.vue";
 import Roles from "../pages/admin/roles/View.vue";
 import AddRole from "../pages/admin/roles/AddRole.vue";
 import EditRole from "../pages/admin/roles/EditRole.vue";
-import NotFound from "../pages/Notfound.vue";
+import NotFound from "../pages/NotFound.vue";
 
 const routes = [
   {
@@ -222,5 +222,13 @@ const routes = [
     component: NotFound,
   },
 ];
+
+
+
+
+
+
+
+
 
 export default routes;

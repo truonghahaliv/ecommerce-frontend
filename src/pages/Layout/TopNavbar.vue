@@ -20,7 +20,7 @@
           <div class="md-collapse">
             <!-- Search bar -->
             <div class="md-autocomplete">
-              <md-autocomplete class="search" v-model="selectedEmployee" :md-options="employees">
+              <md-autocomplete class="search" v-model="s" :md-options="s">
                 <label>Search...</label>
               </md-autocomplete>
             </div>
@@ -38,7 +38,7 @@
                       <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                           <!-- Use router-link to navigate to login page and call logout method -->
-                          <router-link to="/login" @click.native="logout">Logout</router-link>
+                          <router-link to="" @click.native="logout">Logout</router-link>
                         </li>
                       </ul>
                     </drop-down>
