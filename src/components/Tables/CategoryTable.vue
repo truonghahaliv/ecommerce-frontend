@@ -19,10 +19,10 @@
 </div>
 </template>
 
-  
 <script>
 import axios from 'axios';
 import Pagination from 'vue-pagination-2';
+import Swal from 'sweetalert2';
 export default {
     name: 'category-table',
     components: {
@@ -70,17 +70,37 @@ export default {
             });
         },
         deleteCategory(categoryId) {
-            if (confirm('Are you sure you want to delete this category?')) {
-                axios.delete(`http://127.0.0.1:8000/api/categories/${categoryId}`)
-                    .then(response => {
-                        alert(response.data.message);
-                        this.fetchCategories(); // Refresh the list
-                    })
-                    .catch(error => {
-                        console.error('Error deleting category:', error);
-                    });
-            }
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`http://127.0.0.1:8000/api/categories/${categoryId}`)
+                        .then(response => {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your category has been deleted.",
+                                icon: "success"
+                            });
+                            this.fetchCategories(); // Refresh the list
+                        })
+                        .catch(error => {
+                            console.error('Error deleting category:', error);
+                            Swal.fire({
+                                title: "Error!",
+                                text: "There was an error deleting the category.",
+                                icon: "error"
+                            });
+                        });
+                }
+            });
         },
+
         myCallback(newPage) {
 
             this.fetchCategories(newPage);

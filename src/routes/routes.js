@@ -51,168 +51,97 @@ const routes = [
       },
       {
         path: "users",
+        name: "Users",
         component: Users,
-        meta: {
-          requiresAuth: true,
-        },
-        children: [
-          {
-            path: "",
-            name: "Users",
-            component: Users,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: "add-user",
-            name: "AddUser",
-            component: AddUser,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: ":id/edit-user",
-            name: "EditUser",
-            component: EditUser,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-        ],
+      },
+      {
+        path: "/users/add-user",
+        name: "AddUser",
+        component: AddUser,
+      },
+      {
+        path: "/users/:id/edit-user",
+        name: "EditUser",
+        component: EditUser,
       },
       {
         path: "products",
+        name: "Products",
         component: Products,
-        meta: {
-          requiresAuth: true,
-        },
-        children: [
-          {
-            path: "",
-            name: "Products",
-            component: Products,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: "add-product",
-            name: "AddProduct",
-            component: AddProduct,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: ":id/edit-product",
-            name: "EditProduct",
-            component: EditProduct,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-        ],
+      },
+      {
+        path: "/products/add-product",
+        name: "AddProduct",
+        component: AddProduct,
+      },
+      {
+        path: "/products/:id/edit-product",
+        name: "EditProduct",
+        component: EditProduct,
       },
       {
         path: "categories",
+        name: "Categories",
         component: Categories,
-        meta: {
-          requiresAuth: true,
-        },
-        children: [
-          {
-            path: "",
-            name: "Categories",
-            component: Categories,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: "add-category",
-            name: "AddCategory",
-            component: AddCategory,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: ":id/edit-category",
-            name: "EditCategory",
-            component: EditCategory,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-        ],
+      },
+      {
+        path: "/categories/add-category",
+        name: "AddCategory",
+        component: AddCategory,
+      },
+      {
+        path: "/categories/:id/edit-category",
+        name: "EditCategory",
+        component: EditCategory,
       },
       {
         path: "permissions",
         component: Permissions,
+        name: "Permissions",
         meta: {
           requiresAuth: true,
         },
-        children: [
-          {
-            path: "",
-            name: "Permissions",
-            component: Permissions,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: "add-permission",
-            name: "AddPermission",
-            component: AddPermission,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: ":id/edit-permission",
-            name: "EditPermission",
-            component: EditPermission,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-        ],
       },
+      {
+        path: "/permissions/add-permission",
+        name: "AddPermission",
+        component: AddPermission,
+        meta: {
+          requiresAuth: true,
+        },
+      },
+      {
+        path: "/permissions/:id/edit-permission",
+        name: "EditPermission",
+        component: EditPermission,
+        meta: {
+          requiresAuth: true,
+        },
+      },
+
       {
         path: "roles",
         component: Roles,
+        name:"Roles",
         meta: {
           requiresAuth: true,
         },
-        children: [
-          {
-            path: "",
-            name: "Roles",
-            component: Roles,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: "add-role",
-            name: "AddRole",
-            component: AddRole,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-          {
-            path: ":id/edit-role",
-            name: "EditRole",
-            component: EditRole,
-            meta: {
-              requiresAuth: true,
-            },
-          },
-        ],
+      },
+      {
+        path: "/roles/add-role",
+        name: "AddRole",
+        component: AddRole,
+        meta: {
+          requiresAuth: true,
+        },
+      },
+      {
+        path: "/roles/:id/edit-role",
+        name: "EditRole",
+        component: EditRole,
+        meta: {
+          requiresAuth: true,
+        },
       },
     ],
   },
@@ -222,13 +151,5 @@ const routes = [
     component: NotFound,
   },
 ];
-
-
-
-
-
-
-
-
 
 export default routes;
