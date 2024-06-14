@@ -20,50 +20,50 @@ const router = new VueRouter({
   linkExactActiveClass: "nav-item active",
 });
 
-function isLoggedIn() {
-  return !!localStorage.getItem('authToken');
-}
-router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const requiresGuest = to.matched.some(record => record.meta.requiresGuest);
-  const isAuthenticated = isLoggedIn();
+// function isLoggedIn() {
+//   return !!localStorage.getItem('authToken');
+// }
+// router.beforeEach((to, from, next) => {
+//   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+//   const requiresGuest = to.matched.some(record => record.meta.requiresGuest);
+//   const isAuthenticated = isLoggedIn();
 
-  if (requiresAuth && !isAuthenticated) {
-    next({ path: '/login', query: { redirect: to.fullPath } });
-  } else if (requiresGuest && isAuthenticated) {
-    next({ path: '/dashboard' });
-  } else if (to.path === '/notfound') {
-    next();
-  }  else {
-    next();
-  }
-});
+//   if (requiresAuth && !isAuthenticated) {
+//     next({ path: '/login', query: { redirect: to.fullPath } });
+//   } else if (requiresGuest && isAuthenticated) {
+//     next({ path: '/dashboard' });
+//   } else if (to.path === '/notfound') {
+//     next();
+//   }  else {
+//     next();
+//   }
+// });
 
-axios.interceptors.request.use(
-  function(config) {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  function(error) {
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.request.use(
+//   function(config) {
+//     const token = localStorage.getItem('authToken');
+//     if (token) {
+//       config.headers['Authorization'] = `Bearer ${token}`;
+//     }
+//     return config;
+//   },
+//   function(error) {
+//     return Promise.reject(error);
+//   }
+// );
 
-axios.interceptors.response.use(
-  function(response) {
-    return response;
-  },
-  function(error) {
-    if (error.response && error.response.status === 401) {
-      localStorage.removeItem('authToken');
-      router.push({ path: '/login', query: { redirect: router.currentRoute.fullPath } });
-    }
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.response.use(
+//   function(response) {
+//     return response;
+//   },
+//   function(error) {
+//     if (error.response && error.response.status === 401) {
+//       localStorage.removeItem('authToken');
+//       router.push({ path: '/login', query: { redirect: router.currentRoute.fullPath } });
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 Vue.prototype.$Chartist = Chartist;
 
 Vue.use(MaterialDashboard);

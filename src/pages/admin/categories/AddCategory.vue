@@ -33,6 +33,8 @@
 
 <script>
 import axios from 'axios';
+import swal from 'sweetalert2';
+
 export default {
     name: 'addCategory',
     data() {
@@ -56,7 +58,11 @@ export default {
 
             axios.post('http://127.0.0.1:8000/api/categories', this.model.category)
                 .then(response => {
-                    console.log(response);
+                    swal.fire({
+                        title: "Success!",
+                        text: "Category add successfully!",
+                        icon: "success"
+                    });
                     this.$router.push({
                         name: 'Categories'
                     });
